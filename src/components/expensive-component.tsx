@@ -1,6 +1,6 @@
 const ExpensiveComponent = () => {
   return (
-    <div className="animate-pulse border border-orange-700 bg-orange-300 px-4 py-2 text-center font-bold">
+    <div className="border border-orange-700 bg-orange-300 px-4 py-2 text-center font-bold">
       🗑️🔥 I am expensive! 🔥🗑️
     </div>
   );

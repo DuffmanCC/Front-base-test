@@ -10,6 +10,8 @@ una buena práctica pensando en el futuro y en la escalabilidad de la aplicació
 
 export default function useApp() {
   const [colorGuess, setColorGuess] = useState('');
+
+  // usar función de inicialización para evitar que se ejecute en cada render
   const [correctAnswer, setCorrectAnswer] = useState(() =>
     generateRandomColor(),
   );
