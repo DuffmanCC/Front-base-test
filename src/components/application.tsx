@@ -1,9 +1,19 @@
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import useApp from '../hooks/useApp';
 import ColorSwatch from './color-swatch';
-import ExpensiveComponent from './expensive-component';
+// import ExpensiveComponent from './expensive-component';
 import GameInput from './game-input';
 import GameStatus from './game-status';
+const ExpensiveComponent = lazy(() =>
+  delayForDemo(import('./expensive-component')),
+);
+
+async function delayForDemo(promise: Promise<any>): Promise<any> {
+  await new Promise((resolve) => {
+    setTimeout(resolve, 5000);
+  });
+  return await promise;
+}
 
 const Application = () => {
   const {
@@ -33,18 +43,13 @@ const Application = () => {
       <button onClick={handleReset}>Reset Color</button>
 
       {/* 
-      Si el componente es muy caro en términos de computación se podría 
+      Si el componente es muy caro en términos de computación o de bytes se puede 
       hacer un suspense para cargar un skeleton mientras o un simple loading.
       
-      Si el componente pesa mucho se podrían hacer también un lazy para que se creara
-      un chunk separado y no se cargara todo el componente al inicio. 
+      Para que el suspense funcione necesitaremos hacer un chunk separado del 
+      componente con lazy
 
       const ExpensiveComponent = lazy(() => import('./expensive-component'));
-      
-      Para evitar que el componente se volviera a calcular si es muy caro 
-      también se podría usar un memo y evitar rerenders innecesarios.
-
-      const MemoizedExpensiveComponent = React.memo(ExpensiveComponent);
       */}
       <Suspense fallback={<div>Loading...</div>}>
         <ExpensiveComponent />

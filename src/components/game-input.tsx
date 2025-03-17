@@ -7,6 +7,11 @@ interface Props {
 }
 
 const GameInput = ({ onSubmit, disabled, value, error, ...props }: Props) => {
+  /*
+  Agregar un mensaje de error en tiempo real para que el usuario sepa
+  si ha introducido un valor incorrecto antes de enviar el formulario suele
+  ser una buena práctica para mejorar la experiencia de usuario.
+  */
   return (
     <form
       className="mb-4 flex items-end"
