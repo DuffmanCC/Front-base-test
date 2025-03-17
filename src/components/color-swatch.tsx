@@ -8,6 +8,7 @@ const ColorSwatch = ({ color, ...props }: Props) => {
       className="h-96 w-96"
       {...props}
       style={{ backgroundColor: '#' + color }}
+      data-testid="color-swatch"
     />
   );
 };

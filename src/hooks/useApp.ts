@@ -10,7 +10,9 @@ una buena práctica pensando en el futuro y en la escalabilidad de la aplicació
 
 export default function useApp() {
   const [colorGuess, setColorGuess] = useState('');
-  const [correctAnswer, setCorrectAnswer] = useState(generateRandomColor());
+  const [correctAnswer, setCorrectAnswer] = useState(() =>
+    generateRandomColor(),
+  );
   const [hasGuessed, setHasGuessed] = useState(false);
   const [isWinner, setIsWinner] = useState(false);
   const [error, setError] = useState('');
@@ -25,7 +27,7 @@ export default function useApp() {
   useEffect(() => {
     if (!hasGuessed) return;
 
-    if (colorGuess === correctAnswer) {
+    if (colorGuess.toLocaleUpperCase() === correctAnswer.toLocaleUpperCase()) {
       setIsWinner(true);
     }
   }, [hasGuessed, correctAnswer, colorGuess]);
